@@ -20,6 +20,7 @@ app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => res.json({ success: true, message: 'Eventra API is running' }));
 app.get('/api/health', (req, res) => res.json({ success: true, message: 'API is running' }));
 
 app.use('/api/auth', authRoutes);
