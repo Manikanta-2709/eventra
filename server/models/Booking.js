@@ -8,6 +8,14 @@ const bookingSchema = new mongoose.Schema(
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     event: { type: mongoose.Schema.Types.ObjectId, ref: 'Event', required: true },
     numberOfTickets: { type: Number, required: true, min: 1 },
+    tierName: { type: String, default: 'General' },
+    tierPrice: { type: Number, default: 0 },
+    customAnswers: [
+      {
+        question: { type: String, required: true },
+        answer: { type: String, default: '' },
+      },
+    ],
     subtotal: { type: Number, default: 0 },
     discountCode: { type: String, trim: true, uppercase: true },
     discountAmount: { type: Number, default: 0, min: 0 },
@@ -31,9 +39,12 @@ const bookingSchema = new mongoose.Schema(
     paymentProvider: { type: String, enum: ['demo', 'razorpay', 'stripe'], default: 'demo' },
     paymentReference: { type: String, trim: true },
     qrCodeData: { type: String, default: '' },
+    backupEmail: { type: String, trim: true, lowercase: true },
     reminderSent: { type: Boolean, default: false },
     checkedIn: { type: Boolean, default: false },
     checkedInAt: Date,
+    certificateId: { type: String, unique: true, sparse: true },
+    certificateIssuedAt: Date,
     bookingDate: { type: Date, default: Date.now },
   },
   { timestamps: true }

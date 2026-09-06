@@ -1,7 +1,15 @@
 {
   "name": "event-portal",
   "private": true,
+  "version": "1.0.0",
+  "description": "Eventra - Modern Event Management and Ticketing Platform",
   "scripts": {
-    "seed:events": "npm --prefix server run seed:events"
+    "build": "npm --prefix client run build",
+    "start": "node server/server.js",
+    "server": "npm --prefix server start",
+    "server:dev": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "seed:events": "npm --prefix server run seed:events",
+    "install:all": "npm install --prefix server && npm install --prefix client"
   }
 }

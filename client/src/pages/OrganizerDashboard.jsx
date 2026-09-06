@@ -12,6 +12,23 @@ const StatCard = ({ label, value }) => (
   </div>
 );
 
+const statusLabels = {
+  draft: 'Draft',
+  published: 'Published',
+  registration_open: 'Registration open',
+  registration_closed: 'Registration closed',
+  ongoing: 'Ongoing',
+  completed: 'Completed',
+  cancelled: 'Cancelled',
+};
+
+const nextStatus = {
+  published: 'registration_open',
+  registration_open: 'registration_closed',
+  registration_closed: 'ongoing',
+  ongoing: 'completed',
+};
+
 const OrganizerDashboard = () => {
   const { user } = useAuth();
   const [events, setEvents] = useState([]);
@@ -43,6 +60,18 @@ const OrganizerDashboard = () => {
       fetchData();
     } catch (err) {
       toast.error(err.response?.data?.message || 'Action failed');
+    }
+  };
+
+  const handleStatusChange = async (event) => {
+    const status = nextStatus[event.status];
+    if (!status) return;
+    try {
+      await api.put(`/events/${event._id}/status`, { status });
+      toast.success(`Event marked ${statusLabels[status].toLowerCase()}`);
+      fetchData();
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Status update failed');
     }
   };
 
@@ -92,9 +121,10 @@ const OrganizerDashboard = () => {
         </div>
       )}
 
-      <div className="grid sm:grid-cols-3 gap-4 mb-10">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
         <StatCard label="Total Events" value={revenue?.totalEvents ?? '—'} />
         <StatCard label="Total Bookings" value={revenue?.totalBookings ?? '—'} />
+        <StatCard label="Attendance Rate" value={revenue ? `${revenue.attendanceRate}%` : '—'} />
         <StatCard label="Revenue" value={revenue ? `₹${revenue.totalRevenue}` : '—'} />
       </div>
 
@@ -121,17 +151,21 @@ const OrganizerDashboard = () => {
               <p className="font-semibold">{ev.title}</p>
               <p className="text-sm text-slate-500">
                 {new Date(ev.date).toLocaleDateString()} · {ev.availableSeats}/{ev.maxSeats} seats left
-                {ev.registrationClosed && ' · Closed'}
               </p>
             </div>
             <div className="flex gap-2 flex-wrap">
+              <span className="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                {statusLabels[ev.status] || ev.status}
+              </span>
               <Link to={`/events/${ev._id}`} className="text-sm px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700">View</Link>
               <Link to={`/events/${ev._id}/edit`} className="text-sm px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700">Edit</Link>
               <Link to={`/events/${ev._id}/attendees`} className="text-sm px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700">Attendees</Link>
               <button onClick={() => handleExport(ev._id)} className="text-sm px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700">Export</button>
               <button onClick={() => handleDuplicate(ev._id)} className="text-sm px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700">Duplicate</button>
-              {!ev.registrationClosed && (
-                <button onClick={() => handleClose(ev._id)} className="text-sm px-3 py-1.5 rounded-lg border border-amber-400 text-amber-600">Close Reg.</button>
+              {nextStatus[ev.status] && (
+                <button onClick={() => handleStatusChange(ev)} className="text-sm px-3 py-1.5 rounded-lg border border-primary-400 text-primary-600">
+                  Mark {statusLabels[nextStatus[ev.status]]}
+                </button>
               )}
               <button onClick={() => handleDelete(ev._id)} className="text-sm px-3 py-1.5 rounded-lg bg-rose-600 text-white">Delete</button>
             </div>

@@ -1,9 +1,10 @@
 services:
+  # Option 1: Unified Fullstack Service (Single-Service Deploy - Free Tier Friendly)
   - type: web
-    name: eventra-backend
+    name: eventra-app
     runtime: node
-    rootDir: server
-    buildCommand: npm install
+    plan: free
+    buildCommand: npm run install:all && npm run build
     startCommand: npm start
     envVars:
       - key: PORT
@@ -23,14 +24,10 @@ services:
       - key: CLOUDINARY_API_SECRET
         sync: false
       - key: CLIENT_URL
+        value: '*'
+      - key: RESEND_API_KEY
         sync: false
-      - key: SMTP_HOST
-        value: smtp.gmail.com
-      - key: SMTP_PORT
-        value: 587
-      - key: SMTP_USER
-        sync: false
-      - key: SMTP_PASS
-        sync: false
+      - key: EMAIL_FROM
+        value: Eventra <onboarding@resend.dev>
       - key: STRIPE_SECRET_KEY
         sync: false

@@ -57,7 +57,7 @@ event-portal/
 cd server
 npm install
 cp .env.example .env   # fill in MONGO_URI, JWT_SECRET, CLOUDINARY_*, SMTP_*, STRIPE_SECRET_KEY
-npm run seed:events     # optional: add demo organizer, admin + 12 sample events
+npm run seed:events     # optional: reset/update the demo organizer, admin + 12 sample events
 npm run dev             # nodemon, http://localhost:5000
 ```
 
@@ -84,7 +84,8 @@ npm run dev             # http://localhost:5173, proxies /api to :5000
 
 ### Seed accounts
 
-Running `npm run seed:events` creates:
+The server automatically creates the demo data on startup. Running `npm run seed:events` manually resets/updates it:
+
 - **Organizer:** `organizer@eventra.local` / `DemoPass123`
 - **Admin:** `admin@eventra.local` / `AdminPass123`
 

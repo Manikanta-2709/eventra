@@ -42,6 +42,7 @@ const sampleEvents = [
     ticketPrice: 799,
     maxSeats: 300,
     availableSeats: 300,
+    isFeatured: true,
     banner: {
       url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80',
       public_id: '',
@@ -59,6 +60,7 @@ const sampleEvents = [
     ticketPrice: 1499,
     maxSeats: 180,
     availableSeats: 180,
+    isFeatured: true,
     banner: {
       url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
       public_id: '',
@@ -233,6 +235,227 @@ const sampleEvents = [
       url: 'https://images.unsplash.com/photo-1511216335778-7cb8f49fa7a3?auto=format&fit=crop&w=1200&q=80',
       public_id: '',
     },
+  },
+  {
+    title: 'Global AI & LLM DevCon 2026',
+    description:
+      'Explore generative AI architectures, agentic pipelines, local models, and real-world enterprise deployment with global industry pioneers.',
+    category: 'Tech',
+    venue: 'KTPO Convention Center',
+    city: 'Bengaluru',
+    date: daysFromNow(20),
+    time: '09:00',
+    ticketPrice: 1999,
+    maxSeats: 400,
+    availableSeats: 380,
+    isFeatured: true,
+    banner: {
+      url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80',
+      public_id: '',
+    },
+    ticketTiers: [
+      { name: 'General Admission', price: 1999, capacity: 250, soldCount: 15, description: 'Access to main conference tracks and exhibition hall' },
+      { name: 'VIP Pass', price: 3499, capacity: 100, soldCount: 5, description: 'VIP keynote seating, networking lounge, and speaker dinner' },
+      { name: 'Student Pass', price: 799, capacity: 50, soldCount: 0, description: 'Valid student ID required at venue check-in' }
+    ],
+  },
+  {
+    title: 'Product Design & UX Horizons',
+    description:
+      'Deep-dive masterclasses on design systems, micro-interactions, Figma workflows, and spatial interface paradigms for modern designers.',
+    category: 'Arts',
+    venue: 'WeWork Galaxy',
+    city: 'Bengaluru',
+    date: daysFromNow(16),
+    time: '10:30',
+    ticketPrice: 899,
+    maxSeats: 120,
+    availableSeats: 110,
+    isFeatured: true,
+    banner: {
+      url: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1200&q=80',
+      public_id: '',
+    },
+    ticketTiers: [
+      { name: 'Standard Pass', price: 899, capacity: 90, soldCount: 10, description: 'Includes interactive workshop and design assets package' },
+      { name: 'Portfolio Review Add-on', price: 1499, capacity: 30, soldCount: 0, description: '1-on-1 portfolio review with design leads' }
+    ],
+  },
+  {
+    title: 'Global Venture & Angel Pitchfest',
+    description:
+      'Connect with over 40 leading angel investors, seed syndicates, and VCs looking for high-growth tech startups.',
+    category: 'Business',
+    venue: 'St. Regis Ballroom',
+    city: 'Mumbai',
+    date: daysFromNow(22),
+    time: '11:00',
+    ticketPrice: 2499,
+    maxSeats: 200,
+    availableSeats: 175,
+    isFeatured: true,
+    banner: {
+      url: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=80',
+      public_id: '',
+    },
+    ticketTiers: [
+      { name: 'Attendee Pass', price: 2499, capacity: 150, soldCount: 20, description: 'Access to pitch sessions and networking cocktails' },
+      { name: 'Founder Pitch Slot', price: 4999, capacity: 50, soldCount: 5, description: '3-minute onstage pitch to investor panel' }
+    ],
+  },
+  {
+    title: 'Full-Stack Next.js & GraphQL Workshop',
+    description:
+      'Build high-performance, server-rendered full-stack web applications with Next.js 15, GraphQL, and Tailwind CSS.',
+    category: 'Tech',
+    venue: 'IIIT Hyderabad Auditorium',
+    city: 'Hyderabad',
+    date: daysFromNow(28),
+    time: '10:00',
+    ticketPrice: 699,
+    maxSeats: 90,
+    availableSeats: 82,
+    banner: {
+      url: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80',
+      public_id: '',
+    },
+  },
+  {
+    title: 'Indie Rock & Jazz Under the Stars',
+    description:
+      'A beachside evening of soulful jazz, indie guitar solos, ambient lighting, and artisan food trucks.',
+    category: 'Music',
+    venue: 'HillTop Amphitheatre',
+    city: 'Goa',
+    date: daysFromNow(14),
+    time: '18:00',
+    ticketPrice: 999,
+    maxSeats: 350,
+    availableSeats: 310,
+    banner: {
+      url: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80',
+      public_id: '',
+    },
+  },
+  {
+    title: 'Mindful Morning Yoga & Sound Bath',
+    description:
+      'Guided morning vinyasa flow, breathwork, and relaxing Himalayan singing bowl sound meditation in nature.',
+    category: 'Sports',
+    venue: 'Cubbon Park Green Lawn',
+    city: 'Bengaluru',
+    date: daysFromNow(7),
+    time: '06:30',
+    ticketPrice: 299,
+    maxSeats: 60,
+    availableSeats: 54,
+    banner: {
+      url: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=1200&q=80',
+      public_id: '',
+    },
+  },
+  {
+    title: 'Craft Beer & Artisan Pizza Tasting',
+    description:
+      'Taste curated flights of small-batch microbrews paired with wood-fired sourdough pizzas and gourmet dips.',
+    category: 'Food',
+    venue: 'Toit Brewery & Kitchen',
+    city: 'Pune',
+    date: daysFromNow(19),
+    time: '19:00',
+    ticketPrice: 850,
+    maxSeats: 80,
+    availableSeats: 70,
+    banner: {
+      url: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80',
+      public_id: '',
+    },
+  },
+  {
+    title: 'EdTech & Future of Higher Education',
+    description:
+      'A comprehensive summit on university admissions, AI tutoring systems, global scholarships, and student careers.',
+    category: 'Education',
+    venue: 'Pragati Maidan Hall 5',
+    city: 'Delhi',
+    date: daysFromNow(35),
+    time: '10:00',
+    ticketPrice: 0,
+    maxSeats: 300,
+    availableSeats: 260,
+    isFeatured: true,
+    banner: {
+      url: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80',
+      public_id: '',
+    },
+  },
+  {
+    title: 'Pottery & Ceramic Wheel Throwing',
+    description:
+      'Hands-on pottery workshop. Learn centering, throwing, and shaping clay on electric wheels to take home your creation.',
+    category: 'Arts',
+    venue: 'Claytopia Studio Bandra',
+    city: 'Mumbai',
+    date: daysFromNow(11),
+    time: '15:00',
+    ticketPrice: 1100,
+    maxSeats: 30,
+    availableSeats: 22,
+    banner: {
+      url: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=1200&q=80',
+      public_id: '',
+    },
+  },
+  {
+    title: 'Cybersecurity & Ethical Hacking Bootcamp',
+    description:
+      'Interactive red-team vs blue-team simulations, penetration testing basics, and zero-day defense walkthroughs.',
+    category: 'Tech',
+    venue: 'IIT Madras Research Park',
+    city: 'Chennai',
+    date: daysFromNow(42),
+    time: '09:30',
+    ticketPrice: 1299,
+    maxSeats: 100,
+    availableSeats: 90,
+    banner: {
+      url: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80',
+      public_id: '',
+    },
+  },
+  {
+    title: 'Sufi & Classical Fusion Night',
+    description:
+      'Enchanting night of mystic Sufi poetry, classical sitar, and modern acoustic arrangements by celebrated maestros.',
+    category: 'Music',
+    venue: 'Kamani Auditorium',
+    city: 'Delhi',
+    date: daysFromNow(26),
+    time: '19:30',
+    ticketPrice: 650,
+    maxSeats: 220,
+    availableSeats: 195,
+    banner: {
+      url: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80',
+      public_id: '',
+    },
+  },
+  {
+    title: 'National Badminton Open Tournament',
+    description:
+      'Open amateur & semi-pro singles and doubles championship with certified umpires, live scoring, and trophies.',
+    category: 'Sports',
+    venue: 'Gachibowli Indoor Stadium',
+    city: 'Hyderabad',
+    date: daysFromNow(30),
+    time: '08:00',
+    ticketPrice: 500,
+    maxSeats: 150,
+    availableSeats: 135,
+    banner: {
+      url: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=1200&q=80',
+      public_id: '',
+    },
   }
 ];
 
@@ -269,12 +492,14 @@ const ensureAdmin = async () => {
   return admin;
 };
 
-const seedEvents = async () => {
-  if (!process.env.MONGO_URI) {
-    throw new Error('MONGO_URI is missing in server/.env');
-  }
+const seedEvents = async ({ connect = true } = {}) => {
+  if (connect) {
+    if (!process.env.MONGO_URI) {
+      throw new Error('MONGO_URI is missing in server/.env');
+    }
 
-  await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URI);
+  }
 
   const organizer = await ensureOrganizer();
   await ensureAdmin();
@@ -294,11 +519,15 @@ const seedEvents = async () => {
   console.log(`Admin login:     ${sampleAdmin.email} / ${sampleAdmin.password}`);
 };
 
-seedEvents()
-  .catch((err) => {
-    console.error(err.message);
-    process.exitCode = 1;
-  })
-  .finally(async () => {
-    await mongoose.disconnect();
-  });
+if (require.main === module) {
+  seedEvents()
+    .catch((err) => {
+      console.error(err.message);
+      process.exitCode = 1;
+    })
+    .finally(async () => {
+      await mongoose.disconnect();
+    });
+}
+
+module.exports = seedEvents;

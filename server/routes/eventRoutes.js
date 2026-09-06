@@ -14,7 +14,11 @@ const {
   createOrUpdateReview,
   duplicateEvent,
   publishEvent,
+  updateEventStatus,
   getOrganizerProfile,
+  sendAnnouncement,
+  joinWaitlist,
+  getWaitlist,
 } = require('../controllers/eventController');
 const protect = require('../middleware/auth');
 const authorize = require('../middleware/role');
@@ -32,8 +36,8 @@ const eventValidation = [
   body('city').notEmpty().withMessage('City is required'),
   body('date').isISO8601().toDate().withMessage('Valid event date is required'),
   body('time').notEmpty().withMessage('Time is required'),
-  body('ticketPrice').isFloat({ min: 0 }).withMessage('Ticket price must be 0 or more'),
-  body('maxSeats').isInt({ min: 1 }).withMessage('Maximum seats must be at least 1'),
+  body('ticketPrice').optional().isFloat({ min: 0 }).withMessage('Ticket price must be 0 or more'),
+  body('maxSeats').optional().isInt({ min: 1 }).withMessage('Maximum seats must be at least 1'),
 ];
 
 // organizer-specific routes must be defined before the /:id catch-all
@@ -83,7 +87,22 @@ router.put(
 );
 router.post('/:id/duplicate', protect, authorize('organizer', 'admin'), requireApprovedOrganizer, duplicateEvent);
 router.put('/:id/publish', protect, authorize('organizer', 'admin'), requireApprovedOrganizer, publishEvent);
+router.put('/:id/status', protect, authorize('organizer', 'admin'), requireApprovedOrganizer, updateEventStatus);
 router.get('/:id/attendees/export', protect, authorize('organizer', 'admin'), exportEventAttendees);
 router.get('/:id/attendees', protect, authorize('organizer', 'admin'), getEventAttendees);
+router.post(
+  '/:id/announcements',
+  protect,
+  authorize('organizer', 'admin'),
+  requireApprovedOrganizer,
+  [
+    body('title').trim().notEmpty().withMessage('Announcement title is required'),
+    body('message').trim().notEmpty().withMessage('Announcement message is required'),
+  ],
+  validate,
+  sendAnnouncement
+);
+router.post('/:id/waitlist', protect, joinWaitlist);
+router.get('/:id/waitlist', protect, authorize('organizer', 'admin'), getWaitlist);
 
 module.exports = router;
