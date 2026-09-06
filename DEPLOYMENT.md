@@ -94,6 +94,29 @@ Make sure you have accounts for these free services:
 
 ---
 
+## Option C: Deploy Frontend on Netlify (with Render Backend)
+
+Your backend is already running on Render (`https://eventra-backend-bio5.onrender.com`).
+
+### Step-by-Step Netlify Setup:
+
+1. **Log in to [Netlify Dashboard](https://app.netlify.com/)** and click **Add new site** → **Import an existing project**.
+2. Select your Git provider (GitHub / GitLab) and select the `event-portal` repository.
+3. **Build settings** (Netlify will auto-detect from [netlify.toml](file:///d:/event-portal/netlify.toml)):
+   - **Base directory**: `client`
+   - **Build command**: `npm run build`
+   - **Publish directory**: `client/dist` (or `dist` if base is `client`)
+4. **Environment Variables**:
+   - Click **Add environment variable**:
+     - **Key**: `VITE_API_URL`
+     - **Value**: `https://eventra-backend-bio5.onrender.com/api`
+5. Click **Deploy site**.
+6. **Update Render CORS**:
+   - In your Render dashboard for `eventra-backend-bio5`, go to **Environment** and set:
+     - `CLIENT_URL` = `*` (or your Netlify URL, e.g. `https://your-site-name.netlify.app`).
+
+---
+
 ## 🔒 Security Best Practices for Git
 
 - Never commit `.env` files containing real production secrets.
