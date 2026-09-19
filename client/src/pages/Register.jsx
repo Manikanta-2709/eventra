@@ -8,9 +8,15 @@ export default function Register() {
   const [show, setShow] = useState(false); const [busy, setBusy] = useState(false);
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
   const submit = async (e) => { e.preventDefault(); setBusy(true);
-    try { const u = await register({ ...f, email: f.email.trim() }); toast.success('Account created!');
+    try { const u = await register({ ...f, name: f.name.trim(), email: f.email.trim(), phone: f.phone.trim() }); toast.success('Account created!');
       nav(u.role === 'organizer' ? '/dashboard/organizer' : '/dashboard/user');
-    } catch (err) { toast.error(err.response?.data?.message || 'Registration failed'); } finally { setBusy(false); } };
+    } catch (err) {
+      const validationErrors = err.response?.data?.errors;
+      const message = Array.isArray(validationErrors) && validationErrors.length > 0
+        ? validationErrors.map((item) => item.msg).join('. ')
+        : err.response?.data?.message || 'Registration failed';
+      toast.error(message);
+    } finally { setBusy(false); } };
   const input = 'mt-2 w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm outline-none focus:border-violet-500 focus:ring-4 focus:ring-violet-100';
   return (
   <div className="min-h-[calc(100vh-4rem)] grid lg:grid-cols-2 bg-slate-50 dark:bg-slate-950">
