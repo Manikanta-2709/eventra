@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eventra-hub.netlify.app/sitemap.xml
