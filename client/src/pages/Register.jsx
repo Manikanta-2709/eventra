@@ -8,7 +8,14 @@ export default function Register() {
   const [show, setShow] = useState(false); const [busy, setBusy] = useState(false);
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
   const submit = async (e) => { e.preventDefault(); setBusy(true);
-    try { const u = await register({ ...f, name: f.name.trim(), email: f.email.trim(), phone: f.phone.trim() }); toast.success('Account created!');
+    try {
+      const u = await register({
+        ...f,
+        name: f.name.trim(),
+        email: f.email.trim(),
+        phone: f.phone.replace(/[\s()-]/g, ''),
+      });
+      toast.success('Account created!');
       nav(u.role === 'organizer' ? '/dashboard/organizer' : '/dashboard/user');
     } catch (err) {
       const validationErrors = err.response?.data?.errors;
