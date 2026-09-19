@@ -96,7 +96,8 @@ Make sure you have accounts for these free services:
 
 ## Option C: Deploy Frontend on Netlify (with Render Backend)
 
-Your backend is already running on Render (`https://eventra-backend-bio5.onrender.com`).
+Deploy the backend on Render first, then use its generated URL below. Do not use
+the frontend URL as the API URL.
 
 ### Step-by-Step Netlify Setup:
 
@@ -109,11 +110,24 @@ Your backend is already running on Render (`https://eventra-backend-bio5.onrende
 4. **Environment Variables**:
    - Click **Add environment variable**:
      - **Key**: `VITE_API_URL`
-     - **Value**: `https://eventra-backend-bio5.onrender.com/api`
+       - **Value**: `https://<your-render-service>.onrender.com/api`
 5. Click **Deploy site**.
 6. **Update Render CORS**:
-   - In your Render dashboard for `eventra-backend-bio5`, go to **Environment** and set:
-     - `CLIENT_URL` = `*` (or your Netlify URL, e.g. `https://your-site-name.netlify.app`).
+    - In your Render backend service dashboard, go to **Environment** and set:
+       - `CLIENT_URL` = `https://your-site-name.netlify.app` (comma-separate additional frontend origins if needed).
+
+### Verify the backend before testing the frontend
+
+Open this URL in a browser or run `curl` against it:
+
+```text
+https://<your-render-service>.onrender.com/api/health
+```
+
+It must return `{"success":true,"message":"Eventra API is running"}`. If it does
+not, check that Render has `MONGO_URI` and `JWT_SECRET` configured and that the
+service logs contain `Server running on port ...`. After changing
+`VITE_API_URL`, trigger a new frontend deploy because Vite embeds it at build time.
 
 ---
 

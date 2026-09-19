@@ -28,3 +28,4 @@ Thumbs.db
 # Local uploads
 server/uploads/*
 !server/uploads/.gitkeep
+DEPLOYMENT.md
