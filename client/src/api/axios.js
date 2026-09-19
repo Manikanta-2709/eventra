@@ -4,9 +4,12 @@ const configuredApiUrl = import.meta.env.VITE_API_URL?.trim();
 const defaultApiUrl = import.meta.env.PROD
   ? 'https://eventra-backend-bio5.onrender.com/api'
   : '/api';
+const apiUrl = configuredApiUrl && /^https?:\/\//i.test(configuredApiUrl)
+  ? configuredApiUrl.replace(/\/+$/, '')
+  : defaultApiUrl;
 
 const api = axios.create({
-  baseURL: configuredApiUrl ? configuredApiUrl.replace(/\/+$/, '') : defaultApiUrl,
+  baseURL: apiUrl,
 });
 
 api.interceptors.request.use((config) => {

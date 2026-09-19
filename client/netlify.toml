@@ -5,6 +5,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  VITE_API_URL = "https://eventra-backend-bio5.onrender.com/api"
 
 # SPA Client-Side Routing Fallback
 [[redirects]]
