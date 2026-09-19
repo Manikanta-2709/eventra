@@ -12,7 +12,7 @@ export default function Login() {
     } catch (err) { toast.error(err.response?.data?.message || 'Login failed'); } finally { setBusy(false); } };
   return (
   <div className="min-h-[calc(100vh-4rem)] grid lg:grid-cols-2 bg-slate-50 dark:bg-slate-950">
-    <div className="hidden lg:flex flex-col justify-between p-12 text-white relative overflow-hidden">
+    <div className="flex h-48 flex-col justify-between p-6 text-white relative overflow-hidden lg:h-auto lg:p-12">
       {/* Hero background image */}
       <img
         src="/login-hero.jpg"
@@ -28,7 +28,7 @@ export default function Login() {
         <div className="h-11 w-11 grid place-items-center rounded-2xl bg-white text-blue-700 font-black text-2xl shadow-lg shadow-blue-900/30">E</div>
         <div><p className="font-black text-2xl leading-none">Eventra</p><p className="text-[11px] tracking-[0.25em] text-blue-200 uppercase">More than events</p></div>
       </Link>
-      <div className="relative z-10">
+      <div className="relative z-10 hidden lg:block">
         <h1 className="text-5xl font-black leading-tight mt-6 drop-shadow-lg">Welcome back<br />to the celebration.</h1>
         <p className="text-blue-100/90 mt-4 max-w-md">Log in to manage bookings, track events and pick up where the music left off.</p>
         <div className="flex flex-col gap-3 mt-8 max-w-md">

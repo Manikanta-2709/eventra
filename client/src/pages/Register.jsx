@@ -14,7 +14,7 @@ export default function Register() {
   const input = 'mt-2 w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm outline-none focus:border-violet-500 focus:ring-4 focus:ring-violet-100';
   return (
   <div className="min-h-[calc(100vh-4rem)] grid lg:grid-cols-2 bg-slate-50 dark:bg-slate-950">
-    <div className="hidden lg:flex flex-col justify-between p-12 text-white relative overflow-hidden">
+    <div className="flex h-48 flex-col justify-between p-6 text-white relative overflow-hidden lg:h-auto lg:p-12">
       {/* Hero background image */}
       <img
         src="/register-hero.jpg"
@@ -30,11 +30,11 @@ export default function Register() {
         <div className="h-11 w-11 grid place-items-center rounded-2xl bg-white text-violet-700 font-black text-2xl shadow-lg shadow-violet-900/30">E</div>
         <p className="font-black text-2xl">Eventra</p>
       </Link>
-      <div className="relative z-10">
+      <div className="relative z-10 hidden lg:block">
         <h1 className="text-5xl font-black leading-tight drop-shadow-lg">Create your<br />account today.</h1>
         <p className="text-purple-100/90 mt-4 max-w-md">Discover events, book in seconds, or organize your own.</p>
       </div>
-      <p className="relative z-10 text-xs text-purple-200">Free for attendees · Copyright 2026 Eventra</p>
+      <p className="relative z-10 hidden text-xs text-purple-200 lg:block">Free for attendees · Copyright 2026 Eventra</p>
     </div>
     <div className="flex items-center justify-center px-6 py-12">
       <div className="w-full max-w-md animate-rise">
